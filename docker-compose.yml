@@ -10,6 +10,7 @@ services:
       MYSQL_USER: docker
       MYSQL_PASSWORD: P@ssw0rd
       TZ: 'Asia/Tokyo'
+    restart: always
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
     - ./db/data:/var/lib/mysql

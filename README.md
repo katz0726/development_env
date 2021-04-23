@@ -95,7 +95,7 @@ $ git -- version
 ```
 #!/bin/bash
 
-#開発費に必要なパッケージをインストール
+#開発に必要なパッケージをインストール
 sudo yum -y install epel-release
 sudo yum groupinstall -y "Development Tools" 
 sudo yum -y install bzip2 \
