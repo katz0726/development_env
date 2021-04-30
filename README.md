@@ -177,7 +177,7 @@ sudo gem install rails
 mkdir -p ~/docker
 
 # リポジトリをクローン
-git clone 
+git clone https://github.com/katz0726/development_env.git
 
 # docker起動
 docker-compose up -d
