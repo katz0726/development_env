@@ -184,8 +184,5 @@ docker-compose up -d
 
 # docker起動確認
 docker-compose ps
-
-# シェルを実行
-./init-mysql.sh
 ```
 
