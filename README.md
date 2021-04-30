@@ -170,3 +170,22 @@ sudo gem update -f bundler --no-document
 # railsのインストール
 sudo gem install rails
 ```
+
+## docker MySQL構築
+```
+# 作業フォルダを作成
+mkdir -p ~/docker
+
+# リポジトリをクローン
+git clone 
+
+# docker起動
+docker-compose up -d
+
+# docker起動確認
+docker-compose ps
+
+# シェルを実行
+./init-mysql.sh
+```
+
