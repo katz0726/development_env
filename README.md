@@ -110,7 +110,8 @@ sudo yum -y install bzip2 \
                     zip \
                     zlib-devel \
                     wget \
-                    ImageMagick-devel
+                    ImageMagick-devel \
+                    mysql-devel
 
 # Dockerをインストール
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -139,10 +140,6 @@ sudo yum install -y nodejs
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install -y yarn
 
-# python3 をインストール
-sudo yum install -y python3
-sudo pip3 install --upgrade pip
-
 # rbenvをインストール
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -154,19 +151,10 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc
 
 # Rubyインストール
-mkdir -p ~/src
-pushd ~/src
-  rm -Rf ruby-2.7.2*
-  wget https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz
-  tar zxf ruby-2.7.2.tar.gz
-  cd ruby-2.7.2
-  ./configure --disable-install-rdoc
-  make
-  sudo make install
-popd
-sudo gem update --system --no-document
-sudo gem update -f rdoc --no-document
-sudo gem update -f bundler --no-document
+rbenv install 2.7.3
+
+rbenv global 2.7.3
+rbenv version
 
 # railsのインストール
 sudo gem install rails
