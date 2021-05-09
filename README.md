@@ -8,14 +8,15 @@
 * Ruby(2.5.1)
 * Rails(5.2.0)
 
+# VMwareの設定
+
+VMwareの仮想マシンの編集を開き、ネットワークアダプタの設定で以下を入力し、適用する
+
+* 「物理ネットワーク接続の状態を複製」にチェックを入れる
+* 「ブリッジ」を選択する。
+* アダプタの設定でブリッジ先が一つになっていること
+
 # Linuxの設定
-
-ホスト側の設定については、以下を参照。
-
-TODO 設定手順を追記
-
-* https://qiita.com/trkrcafeaulate/items/3dfa8d5ec1075848f1e9
-* https://kitigai.hatenablog.com/entry/2018/06/28/233000
 
 ## SELINUX無効化
 
@@ -51,9 +52,9 @@ $ sudo vim /etc/sysconfig/network-scripts/ifcfg-ens33
 BOOTPROTO="none"
 IPV6INIT="no"
 ONBOOT="yes"
-IPADDR=10.0.XX.YY
-NETMASK=255.255.255.0
-GATEWAY=10.0.XX.1
+IPADDR=XXX
+NETMASK=XXX
+GATEWAY=XXX
 DNS1=8.8.8.8
 DNS2=8.8.4.4
 
