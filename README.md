@@ -174,19 +174,13 @@ sudo gem install rails
 
 ## docker MySQL構築
 ```
-# 作業フォルダを作成
-mkdir -p ~/docker
-
 # リポジトリをクローン
-git clone https://github.com/katz0726/development_env.git
+git clone https://github.com/katz0726/development_env.git ~/
 
 # docker起動
 docker-compose up -d
 
 # docker起動確認
 docker-compose ps
-
-# シェルを実行
-./init-mysql.sh
 ```
 
