@@ -52,9 +52,9 @@ $ sudo vim /etc/sysconfig/network-scripts/ifcfg-ens33
 BOOTPROTO="none"
 IPV6INIT="no"
 ONBOOT="yes"
-IPADDR=XXX
-NETMASK=XXX
-GATEWAY=XXX
+IPADDR=XXX.XXX.XXX.YYY
+NETMASK=255.255.255.0
+GATEWAY=XXX.XXX.XXX.2
 DNS1=8.8.8.8
 DNS2=8.8.4.4
 
@@ -86,7 +86,7 @@ $ sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-re
 $ sudo yum install git
 
 # git2.xがインストールされていることを確認
-$ git -- version
+$ git --version
 ```
 
 ## Rubyをインストール
