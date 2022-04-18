@@ -82,8 +82,8 @@ $ sudo yum install -y vim
 
 # git2をインストール
 $ sudo yum remove git*
-$ sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
-$ sudo yum install git
+$ sudo yum install git224
+$ git --version
 
 # git2.xがインストールされていることを確認
 $ git --version
