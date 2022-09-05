@@ -76,12 +76,11 @@ $ source ~/.bashrc
 ```
 $ touch ~/.vimrc
 $ sudo vim ~/.vimrc
+```
 
 ※設定は以下のリンクを参照
 
 https://github.com/katz0726/vim-settings
-
-```
 
 ## IPアドレスを固定
 
