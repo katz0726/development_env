@@ -39,6 +39,50 @@ root    ALL=(ALL)       ALL
 XXXX    ALL=(ALL)       NOPASSWD: ALL
 ```
 
+## 必要なライブラリをインストール
+
+```
+# yumパッケージを最新にする
+$ sudo yum update -y
+
+# vimをインストール
+$ sudo yum install -y vim
+
+# git2をインストール
+$ sudo yum remove git*
+$ sudo yum install \
+    https://repo.ius.io/ius-release-el7.rpm \
+    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo yum install pcre2
+$ sudo yum install git --enablerepo=ius --disablerepo=base,epel,extras,updates
+$ git --version
+
+# git2.xがインストールされていることを確認
+$ git --version
+```
+
+## 【任意】よく使用するコマンドをaliasに登録
+
+```
+$ echo `alias ll='ls -l'` >> ~/.bashrc
+$ echo `alias la='ls -a'` >> ~/.bashrc
+$ echo `alias lla='ls -la'` >> ~/.bashrc
+
+$ source ~/.bashrc
+```
+
+## 【任意】vimの設定
+
+```
+$ touch ~/.vimrc
+$ sudo vim ~/.vimrc
+
+※設定は以下のリンクを参照
+
+https://github.com/katz0726/vim-settings
+
+```
+
 ## IPアドレスを固定
 
 ```
@@ -69,24 +113,6 @@ $ sudo systemctl restart network
 $ sudo systemctl stop firewalld
 $ sudo systectl disable firewalld
 $ sudo systectl status firewalld
-```
-
-## 必要なライブラリをインストール
-
-```
-# yumパッケージを最新にする
-$ sudo yum update -y
-
-# vimをインストール
-$ sudo yum install -y vim
-
-# git2をインストール
-$ sudo yum remove git*
-$ sudo yum install git224
-$ git --version
-
-# git2.xがインストールされていることを確認
-$ git --version
 ```
 
 ## Rubyをインストール
