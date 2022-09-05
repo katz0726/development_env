@@ -207,5 +207,12 @@ docker-compose up -d
 
 # docker起動確認
 docker-compose ps
+
+# MySQLへの接続確認
+$ docker container ls
+$ docker exec -it [container ID] bash
+$ mysql -u root -p
+
+※接続情報はdocker-compose.ymlを参照
 ```
 
