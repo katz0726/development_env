@@ -160,7 +160,7 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 # nodejs をインストール
-curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_18.x | sudo bash -
 sudo yum install -y nodejs
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install -y yarn
