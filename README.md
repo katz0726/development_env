@@ -64,9 +64,15 @@ $ git --version
 ## 【任意】よく使用するコマンドをaliasに登録
 
 ```
-$ echo `alias ll='ls -l'` >> ~/.bashrc
-$ echo `alias la='ls -a'` >> ~/.bashrc
-$ echo `alias lla='ls -la'` >> ~/.bashrc
+vim ~/.bashrc
+
+alias ll='ls -l'
+alias la='ls -a'
+
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '
+
 
 $ source ~/.bashrc
 ```
