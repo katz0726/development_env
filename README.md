@@ -18,6 +18,13 @@ VMwareの仮想マシンの編集を開き、ネットワークアダプタの�
 
 # Linuxの設定
 
+## 【任意】キーボードをUS配列にする
+
+```
+$ localectl set-keymap us
+$ localectl status
+```
+
 ## SELINUX無効化
 
 SELINUX=enforcingをdisabledに変更する
@@ -55,7 +62,6 @@ $ sudo yum install \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 $ sudo yum install pcre2
 $ sudo yum install git --enablerepo=ius --disablerepo=base,epel,extras,updates
-$ git --version
 
 # git2.xがインストールされていることを確認
 $ git --version
@@ -166,8 +172,7 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 # nodejs をインストール
-curl --silent --location https://rpm.nodesource.com/setup_18.x | sudo bash -
-sudo yum install -y nodejs
+sudo yum install nodejs npm
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install -y yarn
 
