@@ -122,8 +122,8 @@ $ sudo systemctl restart network
 
 ```
 $ sudo systemctl stop firewalld
-$ sudo systectl disable firewalld
-$ sudo systectl status firewalld
+$ sudo systemctl disable firewalld
+$ sudo systemctl status firewalld
 ```
 
 ## Rubyをインストール
@@ -192,8 +192,8 @@ rbenv install 2.7.3
 rbenv global 2.7.3
 rbenv version
 
-# railsのインストール
-sudo gem install rails
+# bundlerのインストール
+gem install bundler
 ```
 
 ## docker MySQL構築
