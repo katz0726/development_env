@@ -157,18 +157,12 @@ sudo yum install -y docker-ce
 
 # Docker を sudo なしで実行できるように設定
 sudo usermod -aG docker $USER
-sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<EOF
-{
-  "bip":            "172.30.0.1/16",
-  "live-restore":   true
-}
-EOF
+
 sudo systemctl enable docker
 sudo systemctl start docker
 
 # docker composeをインストール
-sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.28.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # nodejs をインストール
