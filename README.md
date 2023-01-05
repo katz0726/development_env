@@ -156,7 +156,8 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo yum install -y docker-ce
 
 # Docker を sudo なしで実行できるように設定
-sudo usermod -aG docker $USER
+sudo gpasswd -a $(whoami) docker
+sudo chgrp docker /var/run/docker.sock
 
 sudo systemctl enable docker
 sudo systemctl start docker
