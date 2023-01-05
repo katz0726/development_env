@@ -192,18 +192,8 @@ gem install bundler
 ```
 
 ## docker MySQL構築
+
 ```
-# dockerグループがなければ作る
-cat /etc/group | grep docker
-
-sudo groupadd docker
-
-# 現行ユーザをdockerグループに所属させる
-sudo gpasswd -a $USER docker
-
-# dockerを再起動する
-sudo systemctl restart docker
-
 # リポジトリをクローン
 git clone https://github.com/katz0726/development_env.git ~/
 
