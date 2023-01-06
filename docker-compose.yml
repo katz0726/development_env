@@ -1,17 +1,17 @@
-version: '3'
+version: '3.9'
 
 services:
   # MySQL
   db:
-    image: mysql:5.7
-    container_name: mysql_host
+    image: mysql:5.7.40
+    container_name: mysql_dev
     environment:
-      MYSQL_ROOT_PASSWORD: P@ssw0rd
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: P@ssw0rd
+      MYSQL_ROOT_PASSWORD: railsdev
+      MYSQL_USER: railsdev
+      MYSQL_PASSWORD: railsdev
       TZ: 'Asia/Tokyo'
     restart: always
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: mysqld --skip-grant-tables --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
     - ./db/data:/var/lib/mysql
     - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
