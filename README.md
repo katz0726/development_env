@@ -188,6 +188,9 @@ rbenv version
 
 # bundlerのインストール
 gem install bundler
+
+# Graphvizのインストール
+$ sudo yum install -y graphviz
 ```
 
 ## docker MySQL構築
@@ -215,7 +218,7 @@ docker-compose ps
 # MySQLへの接続確認
 $ docker container ls
 $ docker exec -it [container ID] bash
-$ mysql -u root -p
+$ mysql -u railsdev -p
 
 ※接続情報はdocker-compose.ymlを参照
 ```
