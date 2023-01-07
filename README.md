@@ -156,7 +156,8 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo yum install -y docker-ce
 
 # Docker を sudo なしで実行できるように設定
-sudo usermod -aG docker $USER
+sudo gpasswd -a $(whoami) docker
+sudo chgrp docker /var/run/docker.sock
 
 sudo systemctl enable docker
 sudo systemctl start docker
@@ -194,18 +195,8 @@ $ sudo yum install -y graphviz
 ```
 
 ## docker MySQL構築
+
 ```
-# dockerグループがなければ作る
-cat /etc/group | grep docker
-
-sudo groupadd docker
-
-# 現行ユーザをdockerグループに所属させる
-sudo gpasswd -a $USER docker
-
-# dockerを再起動する
-sudo systemctl restart docker
-
 # リポジトリをクローン
 git clone https://github.com/katz0726/development_env.git ~/
 
