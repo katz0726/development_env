@@ -2,7 +2,7 @@
 
 # バージョン
 
-* CentOS
+* Rocky Linux
 * Docker(1.13.1)
 * docker-compose(1.16.1)
 * Ruby(2.5.1)
@@ -54,23 +54,12 @@ $ sudo yum update -y
 
 # vimをインストール
 $ sudo yum install -y vim
-
-# git2をインストール
-$ sudo yum remove git*
-$ sudo yum install \
-    https://repo.ius.io/ius-release-el7.rpm \
-    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-$ sudo yum install pcre2
-$ sudo yum install git --enablerepo=ius --disablerepo=base,epel,extras,updates
-
-# git2.xがインストールされていることを確認
-$ git --version
 ```
 
 ## 【任意】よく使用するコマンドをaliasに登録
 
 ```
-vim ~/.bashrc
+vim ~/.bash_profile
 
 alias ll='ls -l'
 alias la='ls -a'
@@ -80,7 +69,7 @@ HISTFILESIZE=10000
 HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '
 
 
-$ source ~/.bashrc
+$ source ~/.bash_profile
 ```
 
 ## 【任意】vimの設定
@@ -100,22 +89,25 @@ https://github.com/katz0726/vim-settings
 # 現在のIPアドレスを確認
 $ ip addr
 
-# ifcfg-xxxのxxxには、ip addrで調べたデバイス名を入力する
-$ sudo vim /etc/sysconfig/network-scripts/ifcfg-ens33
+# デバイスを確認
+$ nmcli device
+ens160  ethernet  connected  ens160
+lo      loopback  unmanaged  --
 
-# 以下を追記
-BOOTPROTO="none"
-IPV6INIT="no"
-ONBOOT="yes"
-IPADDR=XXX.XXX.XXX.YYY
-NETMASK=255.255.255.0
-GATEWAY=XXX.XXX.XXX.2
-DNS1=8.8.8.8
-DNS2=8.8.4.4
+# XX.XX.XX.XX には上記で調べたIPアドレスを入力する
+$ sudo nmcli connection modify ens160 ipv4.addresses XX.XX.XX.XX/24
+
+# ゲートウェイ設定
+$ sudo nmcli connection modify ens160 ipv4.gateway XX.XX.XX.1
+
+# IP固定の設定
+$ sudo nmcli connection modify ens160 ipv4.method manual
 
 # 設定を反映する
-$ sudo systemctl daemon-reload
-$ sudo systemctl restart network
+$ sudo nmcli connection down ens160; nmcli connection up ens160
+
+# 設定の確認
+$ sudo nmcli device show ens160
 ```
 
 ## firewallの無効化
