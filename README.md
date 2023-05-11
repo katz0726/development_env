@@ -49,11 +49,11 @@ XXXX    ALL=(ALL)       NOPASSWD: ALL
 ## 必要なライブラリをインストール
 
 ```
-# yumパッケージを最新にする
-$ sudo yum update -y
+# dnfパッケージを最新にする
+$ sudo dnf update -y
 
 # vimをインストール
-$ sudo yum install -y vim
+$ sudo dnf install -y vim
 ```
 
 ## 【任意】よく使用するコマンドをaliasに登録
@@ -123,67 +123,94 @@ $ sudo systemctl status firewalld
 以下をコピーして実行する
 
 ```
-#!/bin/bash
+# rbenv をインストール
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+exec $SHELL -l
 
-#開発に必要なパッケージをインストール
-sudo yum -y install epel-release
-sudo yum groupinstall -y "Development Tools" 
-sudo yum -y install bzip2 \
-                    gcc \
-                    gcc-c++ \
-                    openssl-devel \
-                    readline-devel \
-                    zlib-devel \
-                    sqlite-devel \
-                    unzip \
-                    zip \
-                    zlib-devel \
-                    wget \
-                    ImageMagick-devel \
-                    mysql-devel
+rbenv -v
 
-# Dockerをインストール
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install -y docker-ce
+# ruby-build をインストール
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+ls ~/.rbenv/plugins/ruby-build/bin
+<出力結果>
+rbenv-install  rbenv-uninstall  ruby-build
 
-# Docker を sudo なしで実行できるように設定
-sudo gpasswd -a $(whoami) docker
-sudo chgrp docker /var/run/docker.sock
+# 開発に必要なパッケージをインストール
+sudo dnf install -y gcc openssl-devel readline-devel zlib-devel
 
+# Rubyをインストール
+rbenv install -l
+rbenv install 3.X.X
+
+rbenv global 3.X.X
+
+ruby -v
+```
+
+## Docker, Docker-Compose をインストール
+
+```
+# リポジトリの追加
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf repolist
+> docker-ce-stableが表示されていればOK
+docker-ce-stable        Docker CE Stable - aarch64
+
+# Docker/Docker Composeのインストール
+sudo dnf -y install device-mapper-persistent-data lvm2
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+vi /etc/NetworkManager/NetworkManager.conf
+[main]
+#plugins=keyfile,ifcfg-rh
+dns=none # <-追加
+
+sudo systemctl restart NetworkManager
+
+docker --version
+
+docker compose version
+
+# Dockerの起動
 sudo systemctl enable docker
 sudo systemctl start docker
+sudo systemctl status docker
 
-# docker composeをインストール
-curl -L https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+# sudoを使わずにDockerを起動する設定
+sudo groupadd docker
+whoami
 
+sudo usermod -aG docker <current_user>
+
+groups <current_user>
+
+# docker コマンドを叩いて、permission errorが出なければ反映済み
+docker ps
+```
+
+## その他必要なものをインストール
+```
 # nodejs をインストール
-sudo yum install nodejs npm
-curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-sudo yum install -y yarn
+sudo dnf upgrade --refresh
+sudo dnf install curl -y
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo -E bash -
 
-# rbenvをインストール
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+sudo dnf install nodejs -y
+node -v
+npm -v
 
-echo '# rbenv' >> ~/.bashrc
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+# yarn をインストール
+npm install --global yarn 
 
-source ~/.bashrc
-
-# Rubyインストール
-rbenv install 2.7.3
-
-rbenv global 2.7.3
-rbenv version
+yarn -v
 
 # bundlerのインストール
 gem install bundler
 
 # Graphvizのインストール
-$ sudo yum install -y graphviz
+$ sudo dnf install -y graphviz
 ```
 
 ## docker MySQL構築
