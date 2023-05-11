@@ -220,10 +220,10 @@ $ sudo dnf install -y graphviz
 git clone https://github.com/katz0726/development_env.git ~/
 
 # docker起動
-docker-compose up -d
+docker compose up -d
 
 # docker起動確認
-docker-compose ps
+docker compose ps
 
 # MySQLへの接続確認
 $ docker container ls
