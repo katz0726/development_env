@@ -1,1 +1,3 @@
-db/data/*
+# Exclude volume directory
+data/*
+!data/my.cnf
