@@ -25,29 +25,3 @@ services:
     restart: always
     volumes:
       - ./data/redis:/data
-
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: railsdev
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data/mongo:/data/mongo
-      - ./data/configdb:/data/configdb
-
-  mongo-express:
-    image: mongo-express:latest
-    container_name: mongo_express
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: railsdev
-      ME_CONFIG_MONGODB_SERVER: mongo
-    restart: always
-    ports:
-      - 8081:8081
-    depends_on:
-      - mongo
