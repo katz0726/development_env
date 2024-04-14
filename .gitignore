@@ -1,3 +1,6 @@
 # Exclude volume directory
 data/*
 !data/my.cnf
+
+# Exclude logs
+logs/
