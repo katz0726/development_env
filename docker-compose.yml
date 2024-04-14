@@ -19,5 +19,14 @@ services:
       - ./data/mysql:/var/lib/mysql
       - ./data/my.cnf:/etc/mysql/conf.d/my.cnf
 
+  redis:
+    image: redis:7.2
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - db-store:/var/lib/redis
+      - ./data/redis:/data
+
 volumes:
   db-store:
