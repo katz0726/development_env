@@ -15,9 +15,8 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
-      - ./logs:/var/log/mysql
       - ./data/mysql:/var/lib/mysql
-      - ./data/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
 
   redis:
     image: redis:7.2
